@@ -9,36 +9,51 @@
 <script src="http://www.ylefu.com/zb_system/script/jquery-2.2.4.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(function(){
- var slideHeight = 78; // px
- var defHeight = $('.wrapm').height();
- if(defHeight >= slideHeight){
-  $('.wrapm').css('height' , slideHeight + 'px');
-  $('.read-more').append('<a href="#">read more</a>');
-  $('.read-more a').click(function(){
-   var curHeight = $('.wrapm').height();
-   if(curHeight == slideHeight){
-    $('.wrapm').animate({
-     height: defHeight
-    }, "normal");
-    $('.read-more a').html('hide');
-    $('#gradient').fadeOut();
-   }else{
-    $('.wrapm').animate({
-     height: slideHeight
-    }, "normal");
-    $('.read-more a').html('read more');
-    $('#gradient').fadeIn();
-   }
-   return false;
-  });  
- }
+	var wrampcount=$('.wrapmcount').size();
+	console.log("wrampcount=",wrampcount);
+	for(i=0;i<wrampcount;i++){
+		console.log("i=",i);
+		 var slideHeight = 78; // px
+		 strWramp = '#wrapm'+i;
+		 strReadMore = '.read-more'+i;
+		 console.log("strWramp=",strWramp);
+		 $(strWramp).css('overflow' , 'hidden');
+		 $(strReadMore).css('text-align' , 'center');
+		 var defHeight = $(strWramp).height();
+		 console.log("defHeight=",defHeight);
+		 if(defHeight >= slideHeight){
+		  $(strWramp).css('height' , slideHeight + 'px');
+		  $(strReadMore).append('<a href="#">read more</a>');
+		  console.log(strReadMore+' '+'a');
+		  console.log('this = ',$(this));
+		  $(strReadMore+' '+'a').click(function(){
+		   ReadMoreNowValid = $(this).parent().attr("class");
+		   wrampNowValid = $(this).parent().prev().attr("id");
+		   var curHeight = $('#'+wrampNowValid).height();
+		   console.log("wrampNowValid", wrampNowValid);
+		   if(curHeight == slideHeight){
+			$('#'+wrampNowValid).animate({
+			 height: defHeight
+			}, "normal");
+			$('.'+ReadMoreNowValid+' '+'a').html('hide');
+		   }else{
+			console.log("wrampNowValid hide", wrampNowValid);
+			$('#'+wrampNowValid).animate({
+			 height: slideHeight
+			}, "normal");
+			$('.'+ReadMoreNowValid+' '+'a').html('read more');
+		   }
+		   return false;
+		  });  
+		 }
+		}
 });
 </script>
 </head>
 <body>
   
   
-  <div id="wrapm" class="wrapm">
+  <div id="wrapm0" class="wrapmcount">
 		
 					  <p>
 						I want to do this project in the begining is because my collegues sometimes forgot to order 
@@ -83,9 +98,9 @@ $(function(){
 
 					<div id="gradient"></div>
 				   </div>
-				   <div class="read-more"></div>
+				   <div class="read-more0"></div>
 				   
-				   <div id="wrapm" class="wrapm">
+				   <div id="wrapm1" class="wrapmcount">
 		
 					  <p>
 						I want to do this project in the begining is because my collegues sometimes forgot to order 
@@ -130,6 +145,6 @@ $(function(){
 
 					<div id="gradient"></div>
 				   </div>
-				   <div class="read-more"></div>
+				   <div class="read-more1"></div>
 </body>
 </html>

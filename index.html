@@ -239,7 +239,7 @@
 				  <br/>
 				  <div class="team_line">———<span>sport camera</span>———</div>
 				  <br/>
-				  <div id="wrapm" class="wrapm">
+				  <div id="wrapm0" class="wrapmcount">
 					  <p class= "team_intro">
 						I want to do this project in the begining is because my collegues sometimes forgot to order 
 						bento dinners which are offered by our company. Due to this reason, i came up with an idea that
@@ -251,7 +251,7 @@
 						popularity).
 					  </p>
 				  </div>
-				  <div id="read-more"></div>
+				  <div class="read-more0"></div>
 				</div>
 			  </div>
 			</div>
@@ -272,7 +272,7 @@
 				  <br/>
 				  <div class="team_line">———<span>Web Crawler</span>———</div>
 				  <br/>
-				  <div id="wrapm" class="wrapm">
+				  <div id="wrapm1" class="wrapmcount">
 					  <p class= "team_intro">
 						I want to do this project in the begining is because my collegues sometimes forgot to order 
 						bento dinners which are offered by our company. Due to this reason, i came up with an idea that
@@ -284,7 +284,7 @@
 						popularity).
 					  </p>
 				  </div>
-				  <div id="read-more"></div>
+				  <div class="read-more1"></div>
 				</div>
 			  </div>
 			</div>
@@ -454,39 +454,54 @@
 		var spinner = new Spinner(opts).spin(target)  
 		$(window).load(function(){
 			$('header.masthead').css({visibility: "visible"}).animate(3000);;
-			$('header.masthead').addClass("animated");
-			$('header.masthead').addClass("zoomIn");
+			//$('header.masthead').addClass("animated");
+			//$('header.masthead').addClass("zoomIn");
 			$('#AcoSoar').addClass("animated");
 			$('#AcoSoar').addClass("zoomIn");
 			spinner.stop();
 			
 		});
 		
-		$(function(){
-		 var slideHeight = 85; // px
-		 var defHeight = $('#wrapm').height();
-		 if(defHeight >= slideHeight){
-		  $('#wrapm').css('height' , slideHeight + 'px');
-		  $('#read-more').append('<a href="#">read more</a>');
-		  $('#read-more a').click(function(){
-		   var curHeight = $('#wrapm').height();
-		   if(curHeight == slideHeight){
-			$('#wrapm').animate({
-			 height: defHeight
-			}, "normal");
-			$('#read-more a').html('hide');
-			$('#gradient').fadeOut();
-		   }else{
-			$('#wrapm').animate({
-			 height: slideHeight
-			}, "normal");
-			$('#read-more a').html('read more');
-			$('#gradient').fadeIn();
-		   }
-		   return false;
-		  });  
-		 }
-		});
+	$(function(){
+		var wrampcount=$('.wrapmcount').size();
+		console.log("wrampcount=",wrampcount);
+		for(i=0;i<wrampcount;i++){
+			 console.log("i=",i);
+			 var slideHeight = 92; // px
+			 strWramp = '#wrapm'+i;
+			 strReadMore = '.read-more'+i;
+			 console.log("strWramp=",strWramp);
+			 $(strWramp).css('overflow' , 'hidden');
+			 $(strReadMore).css('text-align' , 'center');
+			 var defHeight = $(strWramp).height();
+			 console.log("defHeight=",defHeight);
+			 if(defHeight >= slideHeight){
+			  $(strWramp).css('height' , slideHeight + 'px');
+			  $(strReadMore).append('<a href="#">read more &dArr;</a>');
+			  console.log(strReadMore+' '+'a');
+			  console.log('this = ',$(this));
+			  $(strReadMore+' '+'a').click(function(){
+			   ReadMoreNowValid = $(this).parent().attr("class");
+			   wrampNowValid = $(this).parent().prev().attr("id");
+			   var curHeight = $('#'+wrampNowValid).height();
+			   console.log("wrampNowValid", wrampNowValid);
+			   if(curHeight == slideHeight){
+				$('#'+wrampNowValid).animate({
+				 height: defHeight
+				}, "normal");
+				$('.'+ReadMoreNowValid+' '+'a').html('hide &uArr;');
+			   }else{
+				console.log("wrampNowValid hide", wrampNowValid);
+				$('#'+wrampNowValid).animate({
+				 height: slideHeight
+				}, "normal");
+				$('.'+ReadMoreNowValid+' '+'a').html('read more &dArr;');
+			   }
+			   return false;
+			  });  
+			 }
+		}
+	});
 	</script>
 </body>
 

@@ -320,5 +320,5 @@ video {
     border-radius: 5px;
 }
 
-#wrapm {overflow: hidden; !important;}
-#read-more{text-align: center;}
+.wrapm {overflow: hidden; !important;}
+.read-more{text-align: center;}
