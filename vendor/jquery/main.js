@@ -458,7 +458,7 @@ $(function(){
 });
 
 //loading page
-/*
+
 $(function(){
 	var opts = {            
 		lines: 13, // 花瓣数目
@@ -491,4 +491,3 @@ $(function(){
 		
 	});
 });
-*/
