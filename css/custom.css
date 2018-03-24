@@ -16,7 +16,7 @@ header.masthead {
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
-	height:520px;
+	height:100%;
 	visibility: hidden
 }
 
